@@ -4,15 +4,18 @@ import cairo
 
 class UI:
     def __init__(self):
+        # builder.add_from_file('pytaca/add_obj_window.glade')
+        # builder.add_from_file('pytaca/obj_right_click_menu.glade')
+        # builder.add_from_file('pytaca/modification_dialog.glade')
         builder = Gtk.Builder()
-        builder.add_from_file('pytaca/ui.glade')
+        builder.add_from_file('pytaca/application_window.glade')
 
-        self.add_object_window = builder.get_object('add_obj_window')
-        self.right_click_menu = builder.get_object('obj_right_click_menu')
-        self.modification_dialog = builder.get_object('modification_dialog')
+        # self.add_object_window = builder.get_object('add_obj_window')
+        # self.right_click_menu = builder.get_object('obj_right_click_menu')
+        # self.modification_dialog = builder.get_object('modification_dialog')
         self.main_window = builder.get_object('application_window')
 
-        builder.connect_signals(self)
+        # builder.connect_signals(self)
         self.main_window.connect('destroy', Gtk.main_quit)
         self.main_window.show_all()
 
