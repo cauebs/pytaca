@@ -1,5 +1,6 @@
 from gi.repository import Gtk
 import cairo
+import control
 
 
 class UI:
@@ -11,13 +12,13 @@ class UI:
         builder.add_from_file('pytaca/application_window.glade')
 
         # self.add_object_window = builder.get_object('add_obj_window')
-        # self.right_click_menu = builder.get_object('obj_right_click_menu')
+        self.right_click_menu = builder.get_object('obj_right_click_menu')
         # self.modification_dialog = builder.get_object('modification_dialog')
         self.main_window = builder.get_object('application_window')
 
         # builder.connect_signals(self)
         self.main_window.connect('destroy', Gtk.main_quit)
-        self.main_window.show_all()
+        self.main_window.show()
 
     # WindowHandler
     def cancel(self, *args):
@@ -100,7 +101,10 @@ class UI:
         abre um popup com o obj_right_click_menu
         """
         if event.button != 3:
-            return
+            return 
+        right_click_menu.set_relative_to(event)
+        right_click_menu.show_all()
+        right_click_menu.popup()
 
     def draw(self, drawing_area, context):
         context.set_source_rgb(1, 1, 0)
